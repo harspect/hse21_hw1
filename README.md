@@ -58,7 +58,7 @@ rm *trimmed
 ```
 Возьмем самый длинный в файл longest
 ```
-sed -n '1,/^>/p' scaffold.fasta | head -n -1 > longest.fasta
+sed -n '1,/^>/p' scaffolds.fasta | head -n -1 > longest.fasta
 ```
 ## Статистика multiqc
 ### Для обычных файлов
