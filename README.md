@@ -57,5 +57,5 @@ rm *trimmed
 ```
 Возьмем самый длинный
 ```
-sed -n '1,/^>/p' scaff.fasta | head -n -1 >long.fasta
+sed -n '1,/^>/p' scaffold.fasta | head -n -1 >longest.fasta
 ```
