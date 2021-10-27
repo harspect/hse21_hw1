@@ -70,5 +70,42 @@ sed -n '1,/^>/p' scaffold.fasta | head -n -1 > longest.fasta
 ![](images/2-1.png)
 ![](images/2-2.png)
 ### Код из Jupyter notebook
+```python
+def analyse(file):
+    cnt = !grep ">" -c $file;
+    cnt = int(cnt[0]);
+    total_len = !grep -v ">" $file | tr -d '\n' | wc -c;
+    total_len = int(total_len[0]);
+    lengths = !grep '>' $file;
+    nums = [];
+    for one in lengths:
+        i = one.find("len");
+        num_st = "";
+        for j in range(i + 3, len(one)):
+            if one[j].isdigit():
+                num_st += one[j];
+            else:
+                break;
+        nums.append(int(num_st));
+    nums = sorted(nums);
+    longest_len = nums[-1];
+    cnt1 = 0;
+    for e in nums:
+        cnt1 += e;
+        if cnt1 >= total_len / 2:
+            n50 = e;
+            break;
+    print(f"Общее кол-во: {cnt}")
+    print(f"Общая длина: {total_len}")
+    print(f"Самый длинный: {longest_len}")
+    print(f"N50: {n50}")
+```
+```python
+def sec(file):
+    num = !grep -Ec 'N+' $file;
+    total = !grep -Eo 'N+' $file | tr -cd 'N' | wc -c;
+    print(f"Кол-во: {num[0]}");
+    print(f"Общая длина: {int(total[0])}");
+```
 ![](images/3-1.png)
 ![](images/3-2.png)
