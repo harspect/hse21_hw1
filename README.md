@@ -61,11 +61,11 @@ rm *trimmed
 sed -n '1,/^>/p' scaffold.fasta | head -n -1 > longest.fasta
 ```
 ## Статистика multiqc
-### Для обычных
+### Для обычных файлов
 Ссылка на отчет: https://github.com/harspect/hse21_hw1/blob/main/multiqc_report_simple.html
 ![](images/1-1.png)
 ![](images/1-2.png)
-### Для trimmed чтений
+### Для trimmed файлов
 Ссылка на отчет: https://github.com/harspect/hse21_hw1/blob/main/multiqc_report_trimmed.html
 ![](images/2-1.png)
 ![](images/2-2.png)
