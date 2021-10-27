@@ -1,5 +1,6 @@
-# hse21_hw1
-Команды первой части
+# ДЗ №1 
+### Поморцев Леонид 2 группа
+Создаем директорию
 ```
 mkdir hw
 cd hw
@@ -13,7 +14,7 @@ ln -s /usr/share/data-minor-bioinf/assembly/oil_R2.fastq
 ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_001.fastq  
 ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R2_001.fastq
 ```
-Отбираем случайные чтения
+Отбираем случайные чтения 
 ```
 SEED=124
 seqtk sample -s$SEED oil_R1.fastq 5000000 > sub1.fastq
@@ -23,7 +24,7 @@ seqtk sample -s$SEED oilMP_S4_L001_R2_001.fastq 1500000 > mp2.fastq
 ```
 Делаем удобную функцию
 ```
-Fastqc() {
+Dofastqc() {
   rm -rf fastqc multiqc
   mkdir fastqc multiqc
   fastqc "$@" -o fastqc
@@ -32,7 +33,7 @@ Fastqc() {
 ```
 Проверяем качество
 ```
-Fastqc mp*.fastq sub*.fastq
+Dofastqc mp*.fastq sub*.fastq
 ```
 Подрезаем
 ```
@@ -46,16 +47,26 @@ rm sub*.fastq
 ```
 Проверяем качество для подрезанных
 ```
-Fastqc *trimmed
+Dofastqc *trimmed
 ```
-Соберём контиги, скаффолды и скаффолды:
+Соберём контиги, скаффолды:
 ```
 platanus assemble -f *.trimmed
 platanus scaffold -c out_contig.fa -IP1 *.trimmed -OP2 *.int_trimmed
 platanus gap_close -c out_scaffold.fa -IP1 *.trimmed -OP2 *.int_trimmed
 rm *trimmed
 ```
-Возьмем самый длинный
+Возьмем самый длинный в файл longest
 ```
-sed -n '1,/^>/p' scaffold.fasta | head -n -1 >longest.fasta
+sed -n '1,/^>/p' scaffold.fasta | head -n -1 > longest.fasta
 ```
+## Статистика multiqc
+### Для обычных
+![](images/1-1.png)
+![](images/1-2.png)
+### Для trimmed чтений
+![](images/2-1.png)
+![](images/2-2.png)
+### Код из Jupyter notebook
+![](images/3-1.png)
+![](images/3-2.png)
