@@ -55,3 +55,7 @@ platanus scaffold -c out_contig.fa -IP1 *.trimmed -OP2 *.int_trimmed
 platanus gap_close -c out_scaffold.fa -IP1 *.trimmed -OP2 *.int_trimmed
 rm *trimmed
 ```
+Возьмем самый длинный
+```
+sed -n '1,/^>/p' scaff.fasta | head -n -1 >long.fasta
+```
